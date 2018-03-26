@@ -4,7 +4,7 @@ public class OurPresident {
     private static OurPresident president;
 
     static {
-        synchronized (president) {
+        synchronized (OurPresident.class) {
             president = new OurPresident();
         }
         
