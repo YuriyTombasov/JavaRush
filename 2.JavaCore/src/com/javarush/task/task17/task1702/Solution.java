@@ -33,6 +33,14 @@ public class Solution {
         System.out.println((result.toString()).equals(expectedResult.toString()));
     }
 
+    public static class SortThread extends Thread{
+        
+        @Override
+        public void run(){
+            sort(testArray);
+        }
+    }
+    
     public static void initThreads() throws InterruptedException {
         List<Thread> threads = new ArrayList<Thread>(countThreads);
         for (int i = 0; i < countThreads; i++) threads.add(new SortThread());
