@@ -21,13 +21,13 @@ public class Solution {
         param1++;
     }
 
-    double method3() {
+    synchronized double method3() {
         double random = Math.random();
         param += 40.7;
         return random + param;
     }
 
-    private void method4() {
+    private synchronized void method4() {
         sb.append(1).append(1).append(1).append(1);
     }
 
