@@ -21,7 +21,7 @@ public class Solution {
 
     public static void main(String[] args) {
         //start here - начни тут
-        SimpleDateFormat inputDateFormat = new SimpleDateFormat("dd/MM/YYYY");
+        SimpleDateFormat inputDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
         SimpleDateFormat outputDateFormat = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
         
         if (args.length > 1){
@@ -32,7 +32,7 @@ public class Solution {
                     allPeople.get(id).setName(null);
                     allPeople.get(id).setSex(null);
                 } else if (args[0].equals("-i")){
-                    System.out.println(allPeople.get(id).getName() + " " + allPeople.get(id).getSex() + " " + outputDateFormat.format(allPeople.get(id).getBirthDay()));
+                    System.out.println(allPeople.get(id).getName() + " " + (allPeople.get(id).getSex() == Sex.MALE ? "м" : "ж") + " " + outputDateFormat.format(allPeople.get(id).getBirthDay()));
                 }
             } else if (args.length == 4 && args[0].equals("-c")){
                 Date birthDate = null;
@@ -47,26 +47,30 @@ public class Solution {
                     allPeople.add(Person.createFemale(args[1], birthDate));
                 }
                 
-                System.out.print(allPeople.size()-1);
+                System.out.println(allPeople.size()-1);
                 
             } else if (args.length == 5 && args[0].equals("-u")){
+
+
                 int id = Integer.parseInt(args[1]);
+                String name = args[2];
                 Date birthDate = null;
                 try {
                     birthDate = inputDateFormat.parse(args[4]);
                 } catch (ParseException ex) {
                 }
-                
+
                 Sex sex = null;
-                if (args[2].equals("м")){
+                if (args[3].equals("м")){
                     sex = Sex.MALE;
-                } else if (args[2].equals("ж")){
+                } else if (args[3].equals("ж")){
                     sex = Sex.FEMALE;
                 }
                 
-                allPeople.get(id).setName(args[2]);
+                allPeople.get(id).setName(name);
                 allPeople.get(id).setSex(sex);
                 allPeople.get(id).setBirthDay(birthDate);
+
             }
 
         }
