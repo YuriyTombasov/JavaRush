@@ -48,6 +48,10 @@ public class Beach implements Comparable<Beach>{
 
     @Override
     public synchronized int compareTo(Beach t) {
-        return (int) (this.distance/this.quality - t.distance/t.quality);
+
+        int estThis= (int) (this.quality - this.distance);
+        int est2 = (int) (t.quality - t.distance);
+
+        return estThis - est2;
     }
 }
