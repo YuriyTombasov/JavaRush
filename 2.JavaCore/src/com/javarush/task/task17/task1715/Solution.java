@@ -24,11 +24,29 @@ public class Solution {
         isStopped = true;
     }
 
-    public static class Apteka {
+    public static class Apteka implements Runnable{
+
+        @Override
+        public void run() {
+            while(!isStopped){
+                drugsController.buy(getRandomDrug(), getRandomCount());
+                waitAMoment();
+                waitAMoment();
+                waitAMoment();
+            }
+        }
 
     }
 
-    public static class Person {
+    public static class Person implements Runnable{
+
+        @Override
+        public void run() {
+            while(!isStopped){
+                drugsController.sell(getRandomDrug(), getRandomCount());
+                waitAMoment();
+            }
+        }
 
     }
 
