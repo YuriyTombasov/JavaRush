@@ -16,6 +16,11 @@ public class Solution {
         counter3.start();
         counter4.start();
 
+        counter1.join();
+        //counter2.join();
+        //counter3.join();
+        //counter4.join();
+        
         for (int i = 1; i <= 100; i++) {
             if (values[i] != 1) {
                 System.out.println("Массив values содержит элементы неравные 1");
@@ -45,9 +50,10 @@ public class Solution {
         @Override
         public void run() {
             do {
-                synchronized (this) {
+                synchronized (Solution.class) {
                     incrementCount();
-                    values[getCount()]++;
+                    int temp = values[getCount()];
+                    values[getCount()] = temp + 1;
                 }
 
                 try {
