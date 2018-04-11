@@ -31,7 +31,7 @@ public class Solution {
         if(readingBytes == available){
             for(byte temp : byteArray){
                 if(!map.containsKey(temp)){
-                    map.put(temp, 0);
+                    map.put(temp, 1);
                 } else{
                     map.put(temp, map.get(temp)+1); 
                 }
