@@ -25,8 +25,8 @@ public class Solution {
         FileOutputStream file3 = new FileOutputStream(fileName3);
         
         if(file1.available() > 0){
-            int buffer1 = file1.available()/2;
-            int buffer2 = file1.available() - (file1.available()/2);
+            int buffer1 = file1.available() - (file1.available()/2);
+            int buffer2 = file1.available()/2;
             byte[] bytesFile2 = new byte[buffer1];
             byte[] bytesFile3 = new byte[buffer2];
         
