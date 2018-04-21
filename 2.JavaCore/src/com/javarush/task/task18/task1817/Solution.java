@@ -23,7 +23,7 @@ public class Solution {
         
         file.close();
         
-        System.out.printf("%.2f", 0.1*sumSpases/sumAll*100);
+        System.out.printf("%.2f", ((float) sumSpases/sumAll)*100);
         
         
     }

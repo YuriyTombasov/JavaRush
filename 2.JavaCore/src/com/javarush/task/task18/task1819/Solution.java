@@ -28,8 +28,8 @@ public class Solution {
         file2.read(buffer2);
         
         FileOutputStream file = new FileOutputStream(fileName1);
-        file.write(buffer1);
         file.write(buffer2);
+        file.write(buffer1);
         
         file.close();
         file1.close();

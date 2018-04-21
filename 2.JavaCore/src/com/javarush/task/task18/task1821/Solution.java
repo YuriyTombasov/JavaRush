@@ -11,28 +11,25 @@ import java.util.TreeMap;
 
 public class Solution {
     public static void main(String[] args) throws IOException {
-        
+
         TreeMap<Integer, Integer> map = new TreeMap<Integer, Integer>();
-        
+
         FileInputStream file = new FileInputStream(args[0]);
-               
-        while (file.available()>0){
-            int element = file.read();
-            if (!map.containsKey(element)){
-                map.put(element, 0);
-            } else {
-                map.put(element, map.get(element)+1);
-            }
+
+        while (file.available() > 0){
+            int b = file.read();
+            if(map.get(b) == null){
+                map.put(b,1);
+            } else map.put(b,map.get(b)+1);
         }
-        
+
         file.close();
-        
-        for (Map.Entry<Integer, Integer> element : map.entrySet()){
-            
-            System.out.println(element.getKey() + " " + element.getKey());
-            
+
+        for(Integer elem : map.keySet()){
+            char c = (char) (int) elem;
+            System.out.println(c + " " + map.get(elem));
         }
-        
-        
+
+
     }
 }
