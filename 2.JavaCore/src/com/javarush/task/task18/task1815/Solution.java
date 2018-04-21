@@ -7,7 +7,29 @@ import java.util.List;
 */
 
 public class Solution {
-    public class TableInterfaceWrapper {
+    public class TableInterfaceWrapper implements ATableInterface{
+
+        ATableInterface original;
+        
+        TableInterfaceWrapper(ATableInterface table){
+            original = table;
+        }
+        
+        @Override
+        public void setModel(List rows) {
+            System.out.println(rows);
+            original.setModel(rows);
+        }
+
+        @Override
+        public String getHeaderText() {
+            return original.getHeaderText().toUpperCase();
+        }
+
+        @Override
+        public void setHeaderText(String newHeaderText) {
+            original.setHeaderText(newHeaderText);
+        }
 
     }
 
