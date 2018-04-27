@@ -45,7 +45,7 @@ public class Solution {
         file.close();
         
         for (String element : list){
-            int tempID = Integer.parseInt(element.substring(0, 7).trim());
+            int tempID = Integer.parseInt(element.substring(0, 8).trim());
             id = (id > tempID ? id : tempID);
         }
         id++;
