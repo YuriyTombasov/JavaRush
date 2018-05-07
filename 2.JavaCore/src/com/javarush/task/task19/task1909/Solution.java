@@ -1,6 +1,7 @@
 package com.javarush.task.task19.task1909;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -18,7 +19,7 @@ public class Solution {
         String name2 = reader.readLine();
         reader.close();
         
-        FileReader file1 = new FileReader(name1);
+        BufferedReader file1 = new BufferedReader(new FileReader(name1));
         String fileContent = "";
         
         while (file1.ready()){
@@ -26,13 +27,12 @@ public class Solution {
             if(ch == (int) '.'){
                 ch = (int) '!';
             }
-            
             fileContent += ch;
         }
         
         file1.close();
         
-        FileWriter file2 = new FileWriter(name2);
+        BufferedWriter file2 = new BufferedWriter(new FileWriter(name2));
         file2.write(fileContent);
         file2.close();
         

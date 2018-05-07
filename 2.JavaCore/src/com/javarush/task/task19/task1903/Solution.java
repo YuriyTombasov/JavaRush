@@ -4,7 +4,6 @@ package com.javarush.task.task19.task1903;
 Адаптация нескольких интерфейсов
 */
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,38 +17,37 @@ public class Solution {
     }
     
     public static void main(String[] args) {
-           
-        
-        
+/*
+        IncomeDataAdapter adapter = new IncomeDataAdapter(new TestClass());
+        System.out.println(adapter.getCompanyName());
+        System.out.println(adapter.getCountryName());
+        System.out.println(adapter.getName());
+        System.out.println(adapter.getPhoneNumber());
+*/        
     }
 
     public static class IncomeDataAdapter implements Customer, Contact{
-
         private IncomeData data;
         
         public IncomeDataAdapter(IncomeData data){
             this.data = data;
         }
         
-        
         @Override
         public String getCompanyName() {
             return data.getCompany();
         }
-
         @Override
         public String getCountryName() {
             return countries.get(data.getCountryCode());
         }
-
         @Override
         public String getName() {
             return data.getContactLastName() + ", " + data.getContactFirstName();
         }
-
         @Override
         public String getPhoneNumber() {
-            String countryPhoneCode = "" + data.getCountryPhoneCode();
+            String countryPhoneCode = "+" + data.getCountryPhoneCode() + "(";
             String phoneNumber = "" + data.getPhoneNumber();
             StringBuilder fullPhoneNumber = new StringBuilder(phoneNumber);
 
@@ -58,7 +56,7 @@ public class Solution {
                 fullPhoneNumber.insert(0, "0");
             }
             
-            fullPhoneNumber.insert(0, "+" + countryPhoneCode + "(");
+            fullPhoneNumber.insert(0, countryPhoneCode);
             fullPhoneNumber.insert(7, ")");
             fullPhoneNumber.insert(11,"-");
             fullPhoneNumber.insert(14,"-");
@@ -66,7 +64,6 @@ public class Solution {
             return fullPhoneNumber.toString();
         }
     }
-
 
     public static interface IncomeData {
         String getCountryCode();        //example UA
@@ -90,7 +87,42 @@ public class Solution {
 
     public static interface Contact {
         String getName();               //example Ivanov, Ivan
-
+                                                  
         String getPhoneNumber();        //example +38(050)123-45-67
     }
+    
+/*    
+    public static class TestClass implements IncomeData{
+        private static int countryCodePhone = 38;
+        private static int phoneNumber = 501234567;
+        private static String countryCode = "UA";
+        private static String company = "JavaRush Ltd";
+        private static String fName = "Имя";
+        private static String lName = "Фамилия";
+        @Override
+        public String getCountryCode() {
+            return countryCode;
+        }
+        @Override
+        public String getCompany() {
+            return company;
+        }
+        @Override
+        public String getContactFirstName() {
+            return fName;
+        }
+        @Override
+        public String getContactLastName() {
+            return lName;
+        }
+        @Override
+        public int getCountryPhoneCode() {
+            return countryCodePhone;
+        }
+        @Override
+        public int getPhoneNumber() {
+            return phoneNumber;
+        }
+    }
+*/     
 }

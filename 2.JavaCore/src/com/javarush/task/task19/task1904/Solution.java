@@ -19,30 +19,21 @@ public class Solution {
         private final Scanner fileScanner;
         
         PersonScannerAdapter(Scanner scanner){
-            fileScanner = scanner;
+            this.fileScanner = scanner;
         }
         
         @Override
         public Person read() throws IOException {
-            String firstName;
-            String middleName;
-            String lastName;
-            Date birthDate;
-            
-            String line = "";
-                        
+            Person person = null;
             if(fileScanner.hasNext()){
-                line = fileScanner.next();
-            } else return null;
-            
-            String[] arrayLine = line.split(" ", 4);
-            
-            lastName = arrayLine[0];
-            firstName = arrayLine[1];
-            middleName = arrayLine[2];
-            birthDate = new Date(arrayLine[3]);
-            
-            Person person = new Person(lastName, firstName, middleName, birthDate);
+                String line = fileScanner.next();
+                String[] arrayLine = line.split(" ", 4);
+                String lastName = arrayLine[0];
+                String firstName = arrayLine[1];
+                String middleName = arrayLine[2];
+                Date birthDate = new Date(arrayLine[3]);
+                person = new Person(lastName, firstName, middleName, birthDate);
+            }
             return person;
         }
 
