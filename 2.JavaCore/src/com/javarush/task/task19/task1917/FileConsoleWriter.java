@@ -34,10 +34,7 @@ public class FileConsoleWriter{
     
     public void write(char[] cbuf, int off, int len) throws IOException {
         fileWriter.write(cbuf, off, len);
-        
-        for(int i = off; (i < off + len) || (i < cbuf.length); i++){
-            System.out.print(cbuf[i]);
-        }
+        System.out.print(new String(cbuf, off, len));
     }
     
     public void write(int c) throws IOException {
@@ -52,7 +49,7 @@ public class FileConsoleWriter{
     
     public void write(String str, int off, int len) throws IOException {
         fileWriter.write(str, off, len);
-        System.out.println(str.substring(off, len));
+        System.out.println(str.substring(off, off+len));
     }
     
     public void write(char[] cbuf) throws IOException {

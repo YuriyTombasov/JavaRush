@@ -14,6 +14,12 @@ import java.util.List;
 C:\Users\tombasov_ya\Tom\GIT\TasksJavaRush\test\file1.txt
 C:\Users\tombasov_ya\Tom\GIT\TasksJavaRush\test\file2.txt
 C:\Users\tombasov_ya\Tom\GIT\TasksJavaRush\test\file3.txt
+
+ERROR
+Список lines должен содержать объединенную версию строк из файлов, где для каждой строки указана одна из операций ADDED, REMOVED, SAME.
+Убедись, что список lines в нужных местах содержит операции REMOVED c нужными строками.
+
+
 */
 
 public class Solution {

@@ -9,6 +9,13 @@ import java.io.InputStreamReader;
 
 /* 
 Выделяем числа
+
+ERROR:
+Программа должна записывать во второй файл все числа, через пробел, из первого файла (используй BufferedWriter с конструктором FileWriter).
+
+Убедись, что программа записывает во второй файл все числа, через пробел, из первого файла.
+
+
 */
 
 public class Solution {
@@ -33,5 +40,8 @@ public class Solution {
         for (int i = 0; i < nums.length; i++){
             file2.write(nums[i]+" ");
         }
+
+        file1.close();
+        file2.close();
     }
 }

@@ -2,6 +2,11 @@ package com.javarush.task.task19.task1903;
 
 /* 
 Адаптация нескольких интерфейсов
+
+ERROR:
+Метод getPhoneNumber() должен вернуть валидный телефонный номер (смотри примеры),
+дополненный нулями до 10 цифр при необходимости. Телефонный код страны нужно взять из getCountryPhoneCode(), а сам номер из getPhoneNumber() объекта data.
+
 */
 
 import java.util.HashMap;
