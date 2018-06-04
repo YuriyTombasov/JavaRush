@@ -16,14 +16,10 @@ C:\Users\tombasov_ya\Tom\GIT\TasksJavaRush\test\file4.txt
 
 public class Solution {
     public static void main(String[] args) throws IOException {
-        /*
+
         BufferedReader file1 = new BufferedReader(new FileReader(args[0]));
         BufferedWriter file2 = new BufferedWriter(new FileWriter(args[1]));
-        */
-        BufferedReader file1 = new BufferedReader(new FileReader("C:\\Users\\tombasov_ya\\Tom\\GIT\\TasksJavaRush\\test\\file3.txt"));
-        BufferedWriter file2 = new BufferedWriter(new FileWriter("C:\\Users\\tombasov_ya\\Tom\\GIT\\TasksJavaRush\\test\\file4.txt"));
-        
-        
+
         StringBuilder content = new StringBuilder();
         while(file1.ready()){
             content.append(file1.readLine()).append(" ");

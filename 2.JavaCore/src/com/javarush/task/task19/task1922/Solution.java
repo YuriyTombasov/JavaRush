@@ -32,6 +32,8 @@ public class Solution {
         while(fileReader.ready()){
             content.add(fileReader.readLine());
         }
+
+        fileReader.close();
         
         for(String str : content){
             int count = 0;
