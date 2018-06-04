@@ -10,11 +10,8 @@ import java.io.InputStreamReader;
 /* 
 Выделяем числа
 
-ERROR:
-Программа должна записывать во второй файл все числа, через пробел, из первого файла (используй BufferedWriter с конструктором FileWriter).
-
-Убедись, что программа записывает во второй файл все числа, через пробел, из первого файла.
-
+Q:\1_programming\FileExamples\File1.txt
+Q:\1_programming\FileExamples\File2.txt
 
 */
 
@@ -34,11 +31,12 @@ public class Solution {
             fileContent += (char) file1.read();
         }
         
-        String[] nums = fileContent.split("[^0-9]");
-        
-        String rez = "";
+        String[] nums = fileContent.split(" ");
+
         for (int i = 0; i < nums.length; i++){
-            file2.write(nums[i]+" ");
+            if(nums[i].matches("[0-9]+"))
+            file2.write(nums[i] + " ");
+
         }
 
         file1.close();

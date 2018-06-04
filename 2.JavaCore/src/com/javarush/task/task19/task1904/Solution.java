@@ -1,6 +1,8 @@
 package com.javarush.task.task19.task1904;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -29,19 +31,26 @@ public class Solution {
         }
         
         @Override
+
         public Person read() throws IOException {
             Person person = null;
-            if(fileScanner.hasNext()){
-                String line = fileScanner.next();
-                String[] arrayLine = line.split(" ", 4);
+            SimpleDateFormat format = new SimpleDateFormat("ddMMyyyy");
+            if (fileScanner.hasNext()) {
+                String line = fileScanner.nextLine();
+                String[] arrayLine = line.split(" ");
                 String lastName = arrayLine[0];
                 String firstName = arrayLine[1];
                 String middleName = arrayLine[2];
-                Date birthDate = new Date(arrayLine[3]);
-                person = new Person(lastName, firstName, middleName, birthDate);
+                Date birthDate = null;
+                try {
+                    birthDate = format.parse(arrayLine[3]+arrayLine[4]+arrayLine[5]);
+                } catch (ParseException e) {
+                }
+                person = new Person(firstName, middleName, lastName, birthDate);
             }
             return person;
         }
+
 
         @Override
         public void close() throws IOException {

@@ -10,11 +10,9 @@ import java.io.InputStreamReader;
 /* 
 Замена знаков
 
-ERROR:
+Q:\1_programming\FileExamples\File1.txt
+Q:\1_programming\FileExamples\File2.txt
 
-Программа должна записывать во второй файл содержимое первого файла, где заменены все точки "." на знак "!" (Для записи в файл используй BufferedWriter с конструктором FileWriter).
-
-Убедись, что программа записывает во второй файл содержимое первого файла, где заменено все точки "." на знак "!".
 
 */
 
@@ -30,9 +28,9 @@ public class Solution {
         String fileContent = "";
         
         while (file1.ready()){
-            int ch = file1.read();
-            if(ch == (int) '.'){
-                ch = (int) '!';
+            char ch = (char) file1.read();
+            if(ch == '.'){
+                ch = '!';
             }
             fileContent += ch;
         }

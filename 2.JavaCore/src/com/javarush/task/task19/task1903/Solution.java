@@ -3,10 +3,6 @@ package com.javarush.task.task19.task1903;
 /* 
 Адаптация нескольких интерфейсов
 
-ERROR:
-Метод getPhoneNumber() должен вернуть валидный телефонный номер (смотри примеры),
-дополненный нулями до 10 цифр при необходимости. Телефонный код страны нужно взять из getCountryPhoneCode(), а сам номер из getPhoneNumber() объекта data.
-
 */
 
 import java.util.HashMap;
@@ -28,7 +24,7 @@ public class Solution {
         System.out.println(adapter.getCountryName());
         System.out.println(adapter.getName());
         System.out.println(adapter.getPhoneNumber());
-*/        
+*/
     }
 
     public static class IncomeDataAdapter implements Customer, Contact{
@@ -52,21 +48,14 @@ public class Solution {
         }
         @Override
         public String getPhoneNumber() {
-            String countryPhoneCode = "+" + data.getCountryPhoneCode() + "(";
-            String phoneNumber = "" + data.getPhoneNumber();
-            StringBuilder fullPhoneNumber = new StringBuilder(phoneNumber);
-
-            int ph = 10 - phoneNumber.length();
-            for(int i = 0; i < ph; i++){
-                fullPhoneNumber.insert(0, "0");
-            }
-            
-            fullPhoneNumber.insert(0, countryPhoneCode);
-            fullPhoneNumber.insert(7, ")");
-            fullPhoneNumber.insert(11,"-");
-            fullPhoneNumber.insert(14,"-");
-            
-            return fullPhoneNumber.toString();
+            String full = String.format("%010d", data.getPhoneNumber());
+            String telPart1 = "+" + data.getCountryPhoneCode();
+            String telPart2 = full.substring(0, 3);
+            String telPart3 = full.substring(3, 6);
+            String telPart4 = full.substring(6, 8);
+            String telPart5 = full.substring(8, 10);
+            String telFormated = String.format("%s(%s)%s-%s-%s", telPart1, telPart2, telPart3, telPart4, telPart5);
+            return telFormated;
         }
     }
 
@@ -96,7 +85,7 @@ public class Solution {
         String getPhoneNumber();        //example +38(050)123-45-67
     }
     
-/*    
+/*
     public static class TestClass implements IncomeData{
         private static int countryCodePhone = 38;
         private static int phoneNumber = 501234567;
@@ -129,5 +118,5 @@ public class Solution {
             return phoneNumber;
         }
     }
-*/     
+*/
 }
