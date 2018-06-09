@@ -6,6 +6,8 @@ import java.io.InputStream;
 
 /* 
 Исправить ошибку. Классы и интерфейсы
+C:\Users\tombasov_ya\Tom\GIT\TasksJavaRush\test\Scan.jpg
+C:\Users\tombasov_ya\Tom\GIT\TasksJavaRush\test\file4.txt
 */
 
 public class Solution {
@@ -42,7 +44,7 @@ public class Solution {
                 }
             }
 
-            if (result instanceof A) {
+            if (result instanceof C) {
                 C p = (C) result;
                 System.out.println(p.getClass().getSimpleName());
             }

@@ -1,5 +1,9 @@
 package com.javarush.task.task19.task1924;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,10 +30,20 @@ public class Solution {
         map.put(12, "двенадцать");
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException{
         
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader fileReader = new BufferedReader(new FileReader(reader.readLine()));
+        reader.close();
         
-        
+        while(fileReader.ready()){
+            String line = fileReader.readLine();
+            for(Map.Entry<Integer, String> pair : map.entrySet()){
+                line.replaceAll("\\b" + pair.getKey() + "\\b", pair.getValue());
+            }
+            System.out.println(line);
+        }
+        fileReader.close();
 
     }
 }
