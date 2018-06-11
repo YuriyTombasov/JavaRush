@@ -9,6 +9,9 @@ import java.util.Map;
 
 /* 
 Замена чисел
+
+Q:\1_programming\FileExamples\File1.txt
+
 */
 
 public class Solution {
@@ -39,7 +42,7 @@ public class Solution {
         while(fileReader.ready()){
             String line = fileReader.readLine();
             for(Map.Entry<Integer, String> pair : map.entrySet()){
-                line.replaceAll("\\b" + pair.getKey() + "\\b", pair.getValue());
+                line = line.replaceAll("\\b" + pair.getKey() + "\\b", pair.getValue());
             }
             System.out.println(line);
         }

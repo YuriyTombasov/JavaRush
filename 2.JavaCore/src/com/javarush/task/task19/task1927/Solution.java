@@ -27,10 +27,11 @@ public class Solution {
         BufferedReader reader = new BufferedReader(new StringReader(outputStream.toString()));
         
         ArrayList<String> list = new ArrayList<>();
-        while(reader.ready()){
-            list.add(reader.readLine());
+        String line;
+        while((line = reader.readLine()) != null){
+            list.add(line);
         }
-        
+
         for(int i = 0; i <= list.size()-1; i++){
             System.out.println(list.get(i));
             if(i%2 != 0){
