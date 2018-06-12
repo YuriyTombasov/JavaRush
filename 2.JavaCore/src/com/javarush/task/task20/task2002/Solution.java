@@ -2,19 +2,24 @@ package com.javarush.task.task20.task2002;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /* 
 Читаем и пишем в файл: JavaRush
+
+C:\Users\tombasov_ya\Tom\GIT\TasksJavaRush\test\file3.txt  
+
+
 */
 public class Solution {
     public static void main(String[] args) {
         //you can find your_file_name.tmp in your TMP directory or fix outputStream/inputStream according to your real file location
         //вы можете найти your_file_name.tmp в папке TMP или исправьте outputStream/inputStream в соответствии с путем к вашему реальному файлу
         try {
-            File your_file_name = File.createTempFile("your_file_name", null);
-            OutputStream outputStream = new FileOutputStream(your_file_name);
-            InputStream inputStream = new FileInputStream(your_file_name);
+            //File your_file_name = File.createTempFile("C:\\Users\\tombasov_ya\\Tom\\GIT\\TasksJavaRush\\test\\file3.txt", null);
+            OutputStream outputStream = new FileOutputStream("C:\\Users\\tombasov_ya\\Tom\\GIT\\TasksJavaRush\\test\\file3.txt");
+            InputStream inputStream = new FileInputStream("C:\\Users\\tombasov_ya\\Tom\\GIT\\TasksJavaRush\\test\\file3.txt");
 
             JavaRush javaRush = new JavaRush();
             //initialize users field for the javaRush object here - инициализируйте поле users для объекта javaRush тут
@@ -42,10 +47,36 @@ public class Solution {
 
         public void save(OutputStream outputStream) throws Exception {
             //implement this method - реализуйте этот метод
+            PrintWriter writer = new PrintWriter(outputStream);
+            
+            int countUsers = users.size();
+            writer.println(countUsers);
+            
+            for(User user : users){
+                writer.println((user.getFirstName() == null) ? "null" : user.getFirstName());
+                writer.println((user.getLastName() == null) ? "null" : user.getLastName());
+                writer.println(user.getBirthDate().getTime());
+                writer.println(user.isMale());
+                writer.println(user.getCountry().getDisplayedName());
+            }
+            
         }
 
         public void load(InputStream inputStream) throws Exception {
             //implement this method - реализуйте этот метод
+            
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            int countUsers = Integer.parseInt(reader.readLine());
+
+            for(int i = countUsers; i > 0; i--){
+                User user = new User();
+                
+                user.setFirstName(reader.readLine());
+                user.setLastName(reader.readLine());
+                user.setBirthDate(new Date(reader.readLine()));
+                user.setMale(Boolean.parseBoolean(reader.readLine()));
+                user.setCountry(User.Country.valueOf(reader.readLine()));
+            }
         }
 
         @Override

@@ -48,10 +48,23 @@ public class Solution {
 
         public void save(OutputStream outputStream) throws Exception {
             //implement this method - реализуйте этот метод
+            PrintWriter writer = new PrintWriter(outputStream);
+            
+            writer.println((staticString == null ? "null" : "staticString"));
+            writer.println(i);
+            writer.println(j);
+            writer.flush();
         }
 
         public void load(InputStream inputStream) throws Exception {
             //implement this method - реализуйте этот метод
+            
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            
+            String line = reader.readLine();
+            ClassWithStatic.staticString = (line.equals("null") ? null : line);
+            i = Integer.parseInt(reader.readLine());
+            j = Integer.parseInt(reader.readLine());
         }
 
         @Override

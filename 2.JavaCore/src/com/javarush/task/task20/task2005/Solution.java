@@ -73,21 +73,39 @@ public class Solution {
             //implement this method - реализуйте этот метод
             PrintWriter printWriter = new PrintWriter(outputStream);
             printWriter.println(this.name);
-            if (this.assets.size() > 0) {
-                for (Asset current : this.assets)
-                    printWriter.println(current.getName());
+            
+            String hasAssets = this.assets != null ? "yes" : "no";
+            printWriter.println(hasAssets);
+            printWriter.flush();
+
+            if(hasAssets.equals("yes")){
+                for(Asset element : assets){
+                    printWriter.println(element.getName());
+                    printWriter.println(element.getPrice());
+                }
+                printWriter.flush();
             }
+
             printWriter.close();
         }
 
         public void load(InputStream inputStream) throws Exception {
             //implement this method - реализуйте этот метод
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-
             this.name = reader.readLine();
-            String assetName;
-            while ((assetName = reader.readLine()) != null)
-                this.assets.add(new Asset(assetName));
+
+            String hasAssets = reader.readLine();
+            if(hasAssets.equals("yes")){
+                while (reader.ready()){
+                    String name = reader.readLine();
+                    Double cost = Double.parseDouble(reader.readLine());
+                    Asset asset = new Asset(name);
+                    asset.setPrice(cost);
+                    assets.add(asset);
+
+                }
+            }
+
             reader.close();
         }
     }
