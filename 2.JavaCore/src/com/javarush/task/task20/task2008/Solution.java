@@ -1,5 +1,11 @@
 package com.javarush.task.task20.task2008;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectStreamException;
 import java.io.Serializable;
 
 /* 
@@ -53,5 +59,10 @@ public class Solution implements Serializable {
 
         private Singleton() {
         }
+        
+        private Object readResolve() throws ObjectStreamException{
+            return getInstance();
+        }
+
     }
 }
