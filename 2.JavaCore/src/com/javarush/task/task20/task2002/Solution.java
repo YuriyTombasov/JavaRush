@@ -8,8 +8,11 @@ import java.util.List;
 /* 
 Читаем и пишем в файл: JavaRush
 
-C:\Users\tombasov_ya\Tom\GIT\TasksJavaRush\test\file3.txt  
+C:\Users\tombasov_ya\Tom\GIT\TasksJavaRush\test\file3.txt
 
+Логика чтения/записи реализованная в методах save/load должна работать корректно в случае, если список users пустой.
+Логика чтения/записи реализованная в методах save/load должна работать корректно в случае, если список users не пустой.
+Проверь, почему во время работы методов save/load возникает исключение.
 
 */
 public class Solution {

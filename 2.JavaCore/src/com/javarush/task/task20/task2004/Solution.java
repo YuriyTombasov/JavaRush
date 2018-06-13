@@ -4,6 +4,9 @@ import java.io.*;
 
 /* 
 Читаем и пишем в файл статики
+
+Должна быть реализована возможность сохранения/загрузки объектов типа Solution.ClassWithStatic с помощью методов save/load
+
 */
 public class Solution {
     public static void main(String[] args) {
