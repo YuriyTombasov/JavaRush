@@ -14,9 +14,9 @@ public class Solution {
         //вы можете найти your_file_name.tmp в папке TMP или исправьте outputStream/inputStream в соответствии с путем к вашему реальному файлу
         try {
 
-            File your_file_name = File.createTempFile("your_file_name", null);
-            OutputStream outputStream = new FileOutputStream(your_file_name);
-            InputStream inputStream = new FileInputStream(your_file_name);
+            //File your_file_name = File.createTempFile("your_file_name", null);
+            OutputStream outputStream = new FileOutputStream("C:\\Users\\tombasov_ya\\Tom\\GIT\\TasksJavaRush\\test\\file3.txt");
+            InputStream inputStream = new FileInputStream("C:\\Users\\tombasov_ya\\Tom\\GIT\\TasksJavaRush\\test\\file3.txt");
 
             ClassWithStatic classWithStatic = new ClassWithStatic();
             classWithStatic.i = 3;
@@ -32,6 +32,11 @@ public class Solution {
             loadedObject.load(inputStream);
             //check here that classWithStatic object equals to loadedObject object - проверьте тут, что classWithStatic и loadedObject равны
 
+            System.out.println(loadedObject.equals(classWithStatic));
+            System.out.println(loadedObject.staticString);
+            System.out.println(loadedObject.i);
+            System.out.println(loadedObject.j);
+            
             outputStream.close();
             inputStream.close();
 
@@ -53,10 +58,10 @@ public class Solution {
             //implement this method - реализуйте этот метод
             PrintWriter writer = new PrintWriter(outputStream);
             
-            writer.println((staticString == null ? "null" : "staticString"));
+            writer.println(staticString);
             writer.println(i);
             writer.println(j);
-            writer.flush();
+            writer.close();
         }
 
         public void load(InputStream inputStream) throws Exception {
@@ -64,10 +69,11 @@ public class Solution {
             
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
             
-            String line = reader.readLine();
-            ClassWithStatic.staticString = (line.equals("null") ? null : line);
+            ClassWithStatic.staticString = reader.readLine();
             i = Integer.parseInt(reader.readLine());
             j = Integer.parseInt(reader.readLine());
+            
+            reader.close();
         }
 
         @Override

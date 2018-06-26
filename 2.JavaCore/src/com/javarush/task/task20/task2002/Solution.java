@@ -26,6 +26,14 @@ public class Solution {
 
             JavaRush javaRush = new JavaRush();
             //initialize users field for the javaRush object here - инициализируйте поле users для объекта javaRush тут
+            /*User user = new User();
+            user.setBirthDate(new Date());
+            user.setFirstName("FIRST");
+            user.setLastName("LAST");
+            user.setMale(true);
+            user.setCountry(User.Country.RUSSIA);
+            javaRush.users.add(user);*/
+            
             javaRush.save(outputStream);
             outputStream.flush();
 
@@ -54,7 +62,6 @@ public class Solution {
             
             int countUsers = users.size();
             writer.println(countUsers);
-            
             for(User user : users){
                 writer.println((user.getFirstName() == null) ? "null" : user.getFirstName());
                 writer.println((user.getLastName() == null) ? "null" : user.getLastName());
@@ -62,24 +69,25 @@ public class Solution {
                 writer.println(user.isMale());
                 writer.println(user.getCountry().getDisplayedName());
             }
+            writer.close();
             
         }
 
         public void load(InputStream inputStream) throws Exception {
             //implement this method - реализуйте этот метод
-            
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            
             int countUsers = Integer.parseInt(reader.readLine());
-
             for(int i = countUsers; i > 0; i--){
                 User user = new User();
-                
+           
                 user.setFirstName(reader.readLine());
                 user.setLastName(reader.readLine());
                 user.setBirthDate(new Date(reader.readLine()));
                 user.setMale(Boolean.parseBoolean(reader.readLine()));
                 user.setCountry(User.Country.valueOf(reader.readLine()));
             }
+            reader.close();
         }
 
         @Override

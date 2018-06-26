@@ -1,11 +1,16 @@
 package com.javarush.task.task20.task2018;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 /* 
 Найти ошибки
 */
-public class Solution {
+public class Solution implements Serializable {
     public static class A {
 
         protected String nameA = "A";
@@ -13,6 +18,11 @@ public class Solution {
         public A(String nameA) {
             this.nameA += nameA;
         }
+        
+        public A(){
+            
+        }
+        
     }
 
     public class B extends A implements Serializable {
@@ -24,6 +34,17 @@ public class Solution {
             this.nameA += nameA;
             this.nameB = nameB;
         }
+        
+        private void writeObject(ObjectOutputStream oos) throws IOException {
+            oos.defaultWriteObject();
+            oos.writeObject(this.nameA);
+        }
+        
+        private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException{
+            ois.defaultReadObject();
+            this.nameA = (String) ois.readObject();
+        }
+        
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
