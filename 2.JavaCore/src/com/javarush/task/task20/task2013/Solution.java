@@ -18,6 +18,10 @@ public class Solution {
         private Person father;
         private List<Person> children;
 
+        public Person(){
+
+        }
+
         public Person(String firstName, String lastName, int age) {
             this.firstName = firstName;
             this.lastName = lastName;

@@ -49,7 +49,7 @@ public class Solution {
 
     public static void main(String[] args) {
         
-        System.out.println(Arrays.toString(getNumbers(50000)));
+        System.out.println(Arrays.toString(getNumbers(9999999)));
         
     }
 }

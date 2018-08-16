@@ -8,15 +8,14 @@ import java.io.*;
 public class Solution implements Serializable {
     
     public static class SubSolution extends Solution {
-        
-        private void readObject(ObjectOutputStream in) throws IOException, ClassNotFoundException {
-            throw new NotSerializableException();
-        }
-        
+
         private void writeObject(ObjectOutputStream out) throws IOException {
             throw new NotSerializableException();
         }
-        
+
+        private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+            throw new NotSerializableException();
+        }
         
     }
 
