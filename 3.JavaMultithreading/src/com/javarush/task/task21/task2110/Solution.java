@@ -19,8 +19,21 @@ public class Solution {
         Charset charset = StandardCharsets.UTF_8;
         Path outputFilePath = Paths.get(outputFileName);
 
-        BufferedWriter writer = null;
-        ZipFile zip = null;
+        //BufferedWriter writer = null;
+        //ZipFile zip = null;
+        
+        try(ZipFile zip = new ZipFile(zipFileName); BufferedWriter writer = Files.newBufferedWriter(outputFilePath, charset)){
+            String newLine = System.getProperty("line.separator");
+            for (Enumeration entries = zip.entries(); entries.hasMoreElements(); ) {
+                // Берем имя файла из архива и записываем его в результирующий файл
+                // Get the entry name and write it to the output file
+                String zipEntryName = ((ZipEntry) entries.nextElement()).getName() + newLine;
+                writer.write(zipEntryName, 0, zipEntryName.length());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        /*
         try {
             zip = new ZipFile(zipFileName);
             writer = Files.newBufferedWriter(outputFilePath, charset);
@@ -49,6 +62,7 @@ public class Solution {
                 }
             }
         }
+*/
     }
 
     public static void main(String[] args) {

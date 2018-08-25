@@ -6,7 +6,7 @@ import java.util.Map;
 /* 
 Глубокое клонирование карты
 */
-public class Solution {
+public class Solution implements Cloneable{
 
     public static void main(String[] args) {
         Solution solution = new Solution();
@@ -28,7 +28,7 @@ public class Solution {
 
     protected Map<String, User> users = new LinkedHashMap();
 
-    public static class User {
+    public static class User implements Cloneable{
         int age;
         String name;
 
@@ -36,5 +36,22 @@ public class Solution {
             this.age = age;
             this.name = name;
         }
+        
+        protected User clone() throws CloneNotSupportedException{
+            return new User(this.age, this.name);
+        }
+
     }
+    
+    protected Solution clone() throws CloneNotSupportedException{
+        Solution solution = new Solution();
+        
+        for(Map.Entry<String, User> pair : this.users.entrySet()){
+            solution.users.put(pair.getKey(), pair.getValue().clone());
+        }
+               
+        return solution;
+    }
+    
+    
 }

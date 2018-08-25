@@ -15,11 +15,32 @@ public class Solution {
     }
 
     public boolean equals(Solution n) {
-        return n.first.equals(first) && n.last.equals(last);
+
+        if (n == null) return false;
+
+        if (!(n instanceof Solution)) return false;
+
+        if (this == n) return true;
+        
+        if (this.first != null){
+            if (!this.first.equals(n.first)) return false;
+        } else {
+            if (n.first != null) return false;
+        }
+
+        if (this.last != null){
+            if (!this.last.equals(n.last)) return false;
+        } else {
+            if (n.last != null) return false;
+        }
+        
+        return true;
     }
 
     public int hashCode() {
-        return 31 * first.hashCode() + last.hashCode();
+        int result = 31 * (first != null ? first.hashCode() : 0) + (last != null ? last.hashCode() : 0); 
+        return result; 
+
     }
 
     public static void main(String[] args) {

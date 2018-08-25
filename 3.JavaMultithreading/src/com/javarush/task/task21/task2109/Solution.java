@@ -20,6 +20,7 @@ public class Solution {
         public int getJ() {
             return j;
         }
+        
     }
 
     public static class B extends A {
@@ -33,12 +34,22 @@ public class Solution {
         public String getName() {
             return name;
         }
+        
+        protected Object clone() throws CloneNotSupportedException{
+            throw new CloneNotSupportedException();
+        }
+        
     }
 
     public static class C extends B {
         public C(int i, int j, String name) {
             super(i, j, name);
         }
+        
+        protected C clone() throws CloneNotSupportedException{
+            return new C(getI(), getJ(), getName());
+        }
+
     }
 
     public static void main(String[] args) {
