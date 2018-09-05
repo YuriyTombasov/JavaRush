@@ -6,7 +6,7 @@ import java.util.Map;
 /* 
 Глубокое клонирование карты
 */
-public class Solution implements Cloneable{
+public class Solution implements Cloneable {
 
     public static void main(String[] args) {
         Solution solution = new Solution();
@@ -28,7 +28,7 @@ public class Solution implements Cloneable{
 
     protected Map<String, User> users = new LinkedHashMap();
 
-    public static class User implements Cloneable{
+    public static class User implements Cloneable {
         int age;
         String name;
 
@@ -36,22 +36,38 @@ public class Solution implements Cloneable{
             this.age = age;
             this.name = name;
         }
-        
-        protected User clone() throws CloneNotSupportedException{
+
+        @Override
+        protected User clone() throws CloneNotSupportedException {
             return new User(this.age, this.name);
         }
 
-    }
-    
-    protected Solution clone() throws CloneNotSupportedException{
-        Solution solution = new Solution();
-        
-        for(Map.Entry<String, User> pair : this.users.entrySet()){
-            solution.users.put(pair.getKey(), pair.getValue().clone());
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (!(o instanceof User)) return false;
+
+            User user = (User) o;
+
+            if (age != user.age) return false;
+            return name.equals(user.name);
         }
-               
+
+        @Override
+        public int hashCode() {
+            int result = age;
+            result = 31 * result + name.hashCode();
+            return result;
+        }
+    }
+
+    @Override
+    protected Solution clone() throws CloneNotSupportedException {
+        Solution solution = new Solution();
+        for (Map.Entry<String, User> pair : this.users.entrySet()) {
+            User user = pair.getValue().clone();
+            solution.users.put(pair.getKey(), user);
+        }
         return solution;
     }
-    
-    
 }

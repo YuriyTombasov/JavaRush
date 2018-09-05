@@ -16,54 +16,42 @@ public class Solution {
     public Solution(Connection connection) {
         this.connection = connection;
     }
-    
-    protected void finalize() throws Throwable{
-        super.finalize();
-        if (connection != null) connection.close(); 
-    }
-    
 
     public List<User> getUsers() {
         String query = "select ID, DISPLAYED_NAME, LEVEL, LESSON from USER";
 
         List<User> result = new LinkedList();
 
-        //Statement stmt = null;
-        //ResultSet rs = null;
+        try {
+            try (
+                    Statement stmt = connection.createStatement();
+                    ResultSet rs = stmt.executeQuery(query);
+            ) {
+                while (rs.next()) {
+                    int id = rs.getInt("ID");
+                    String name = rs.getString("DISPLAYED_NAME");
+                    int level = rs.getInt("LEVEL");
+                    int lesson = rs.getInt("LESSON");
 
-        try (Statement stmt = connection.createStatement();ResultSet rs = stmt.executeQuery(query)) {
-            //stmt = connection.createStatement();
-            //rs = stmt.executeQuery(query);
-            while (rs.next()) {
-                int id = rs.getInt("ID");
-                String name = rs.getString("DISPLAYED_NAME");
-                int level = rs.getInt("LEVEL");
-                int lesson = rs.getInt("LESSON");
-
-                result.add(new User(id, name, level, lesson));
+                    result.add(new User(id, name, level, lesson));
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
             result = null;
-        } 
-        /*finally {
-            if(stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if(rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }*/
+        }
+
         return result;
     }
+
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+        if (connection != null)
+            connection.close();
+    }
+
+
 
     public static class User {
         private int id;

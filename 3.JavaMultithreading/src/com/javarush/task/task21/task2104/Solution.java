@@ -13,34 +13,33 @@ public class Solution {
         this.first = first;
         this.last = last;
     }
+    //Метод equals должен проверять является ли переданный объект объектом класса Solution
+    @Override
+    public boolean equals(Object o)
+    {
+        if (o == null)
+            return false;
 
-    public boolean equals(Solution n) {
-
-        if (n == null) return false;
-
-        if (!(n instanceof Solution)) return false;
-
-        if (this == n) return true;
-        
-        if (this.first != null){
-            if (!this.first.equals(n.first)) return false;
-        } else {
-            if (n.first != null) return false;
+        if (!(o instanceof Solution)){
+            return false;
         }
 
-        if (this.last != null){
-            if (!this.last.equals(n.last)) return false;
-        } else {
-            if (n.last != null) return false;
-        }
-        
+        if (this == o) return true;
+
+        Solution solution = (Solution) o;
+
+        if (first != null ? !first.equals(solution.first) : solution.first != null) return false;
+        if (last != null ? !last.equals(solution.last) : solution.last != null) return false;
+
         return true;
     }
 
-    public int hashCode() {
-        int result = 31 * (first != null ? first.hashCode() : 0) + (last != null ? last.hashCode() : 0); 
-        return result; 
-
+    @Override
+    public int hashCode()
+    {
+        int result = first != null ? first.hashCode() : 0;
+        result = 31 * result + (last != null ? last.hashCode() : 0);
+        return result;
     }
 
     public static void main(String[] args) {
