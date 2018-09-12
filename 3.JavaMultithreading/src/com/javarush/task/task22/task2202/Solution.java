@@ -9,9 +9,16 @@ public class Solution {
     }
 
     public static String getPartOfString(String string) {
-        return null;
+        
+        if(string == null || string.isEmpty()) throw new TooShortStringException();
+        
+        String[] splStr = string.split(" ");
+        
+        if(splStr.length < 5) throw new TooShortStringException();
+        
+        return splStr[1] + " " + splStr[2] + " " + splStr[3] + " " + splStr[4];
     }
 
-    public static class TooShortStringException {
+    public static class TooShortStringException extends RuntimeException{
     }
 }

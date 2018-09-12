@@ -4,8 +4,16 @@ package com.javarush.task.task22.task2203;
 Между табуляциями
 */
 public class Solution {
-    public static String getPartOfString(String string) {
-        return null;
+    public static String getPartOfString(String string) throws TooShortStringException{
+        
+        if (string == null || string.isEmpty()) throw new TooShortStringException();
+        
+        String[] splStr = string.split("\t");
+        
+        if (splStr.length < 3) throw new TooShortStringException();
+        
+        
+        return splStr[1];
     }
 
     public static class TooShortStringException extends Exception {
