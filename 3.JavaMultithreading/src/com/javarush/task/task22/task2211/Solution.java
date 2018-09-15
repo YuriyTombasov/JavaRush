@@ -13,9 +13,9 @@ public class Solution {
         FileOutputStream fileOutputStream = new FileOutputStream(args[1]); 
 
         byte[] buffer = new byte[fileInputStream.available()]; 
-        fileInputStream.read(buffer); 
+        fileInputStream.read(buffer);
 
-        fileOutputStream.write(new String(buffer, "UTF-8").getBytes("Windows-1251")); 
+        fileOutputStream.write(new String(buffer, "Windows-1251").getBytes("UTF-8"));
 
         fileInputStream.close(); 
         fileOutputStream.close(); 
