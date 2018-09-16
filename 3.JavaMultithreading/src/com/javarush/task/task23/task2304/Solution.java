@@ -1,5 +1,6 @@
 package com.javarush.task.task23.task2304;
-
+import java.util.List;
+import java.util.Map;
 /* 
 Inner 3
 */
@@ -17,6 +18,20 @@ public class Solution {
 
         Map nameCriteria = ViewMock.getFakeNamesCriteria();
         nameDataProvider.refreshAllData(nameCriteria);
+    }
+
+    private class TaskDataProvider implements DbDataProvider<Task>{
+        @Override
+        public void refreshAllData(Map criteria) {
+            tasks = DbMock.getFakeTasks(criteria);
+        }
+    }
+
+    private class NameDataProvider implements DbDataProvider<String>{
+        @Override
+        public void refreshAllData(Map criteria) {
+            names = DbMock.getFakeNames(criteria);
+        }
     }
 
     private interface DbDataProvider<T> {
