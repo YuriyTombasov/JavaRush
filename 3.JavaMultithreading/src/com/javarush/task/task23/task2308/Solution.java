@@ -4,6 +4,14 @@ package com.javarush.task.task23.task2308;
 Рефакторинг, вложенные классы
 */
 public class Solution {
+    
+    public final class Constants{
+        final String SERVER_IS_NOT_ACCESSIBLE_FOR_NOW = "Server is not accessible for now.";
+        final String USER_IS_NOT_AUTHORIZED = "User is not authorized."; 
+        final String USER_IS_BANNED = "User is banned."; 
+        final String ACCESS_IS_DENIED = "Access is denied."; 
+    }
+    
     public class ServerNotAccessibleException extends Exception {
         public ServerNotAccessibleException() {
             super("Server is not accessible for now.");

@@ -17,6 +17,8 @@ public class Solution {
 
     public static void main(String[] args) {
         obj = Solution.TEST;
+        
+        obj = new Solution.TEST();
         System.out.println(obj);
     }
 }
