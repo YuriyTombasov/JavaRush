@@ -17,6 +17,17 @@ public class Solution {
 
         public class Apartments {
         }
+        
+        public class Apt3Bedroom extends Apartments{
+            
+        }
+        
+        public class BigHall extends Hall{
+            public BigHall(){
+                super(new BigDecimal(5));
+            }
+        }
+        
     }
 
     public static void main(String[] args) {

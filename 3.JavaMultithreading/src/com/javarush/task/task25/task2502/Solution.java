@@ -1,5 +1,6 @@
 package com.javarush.task.task25.task2502;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -19,8 +20,15 @@ public class Solution {
     public static class Car {
         protected List<Wheel> wheels;
 
-        public Car() {
+        public Car() throws Exception{
             //init wheels here
+            wheels = new ArrayList<>();
+            
+            if(loadWheelNamesFromDB().length != 4) throw new Exception();
+            for(String s : loadWheelNamesFromDB()){
+                wheels.add(Wheel.valueOf(s));
+            }
+
         }
 
         protected String[] loadWheelNamesFromDB() {

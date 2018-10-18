@@ -12,17 +12,17 @@ public class Solution {
     private int countItems;
 
     public Iterator getIterator(final String name) {
-        class LocalIterator implements Iterator {
-            public LocalIterator() {
+
+        return new Iterator() {
+            {
                 countItems++;
                 System.out.println(name + " item " + countItems);
             }
-
+            
             public Iterator next() {
-                return new LocalIterator();
+                return this;
             }
-        }
-        return new LocalIterator();
+        };
     }
 
     public static void main(String[] args) {

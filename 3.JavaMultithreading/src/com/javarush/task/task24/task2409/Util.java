@@ -2,6 +2,7 @@ package com.javarush.task.task24.task2409;
 
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Util {
     protected static Collection<Object[]> jeansArray = new LinkedList<>();
@@ -20,6 +21,69 @@ public class Util {
         List<Jeans> allJeans = new LinkedList<>();
 
         for (Object[] obj : getJeansArray()) {
+            abstract class AbstractJeans implements Jeans{
+            private int id, length, size;
+            private double price;
+            private String company;
+
+            public AbstractJeans(int id, int length, int size, double price){
+                    this.id = id;
+                    this.length = length;
+                    this.size = size;
+                    this.price = price;
+                }
+            
+            public int getId(){
+                return this.id = id;
+            }
+            public double getPrice(){
+                return this.price;
+            }
+            public String getTM(){
+                return this.company;
+            }
+            public int getLength(){
+                return this.length = length;
+            }
+                    
+            public int getSize(){
+                return this.size;
+            }
+            @Override
+            public String toString(){
+                return getTM()+"{" + 
+                          "id=" + this.id + 
+                          ", length=" + this.length + 
+                          ", size=" + this.size + 
+                          ", price=" + this.price + 
+                          '}'; 
+
+            }
+            
+            }
+
+            
+            class Levis extends AbstractJeans{
+                public Levis(int id, int length, int size, double price){
+                    super(id, length, size, price);
+                }
+                public String getTM() {
+                    return Company.Levis.fullName;
+                }
+
+                
+            }
+            
+            class Denim extends AbstractJeans{
+                public Denim(int id, int length, int size, double price){
+                    super(id, length, size, price);
+                }
+                public String getTM() {
+                    return Company.Denim.fullName;
+                }
+                
+            }
+            
             int id = (int) obj[0];
             final Company company = (Company ) obj[1];
             int length = (int) obj[2];

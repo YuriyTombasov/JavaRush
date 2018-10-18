@@ -15,6 +15,26 @@ public class Solution implements Action {
         public void someAction() {
             //!!!!! All changes have to be here
             //!!!!! Все изменения должны быть только тут
+            
+            if(param > 0){
+                new FirstClass(){
+                    public Action getDependantAction(){
+                        while(param > 0) System.out.println(param--);
+                        super.someAction();
+                        return this;
+                    }
+                }.getDependantAction();
+            }
+            
+            if(param <= 0){
+                new SecondClass(){
+                    public void someAction(){
+                        System.out.print(sb.toString());
+                        System.out.println(SPECIFIC_ACTION_FOR_ANONYMOUS_SECOND_CLASS_PARAM + param);
+                    }
+                }.someAction();
+            }
+
         }
     };
 
