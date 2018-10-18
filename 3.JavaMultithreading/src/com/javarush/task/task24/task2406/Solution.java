@@ -18,16 +18,20 @@ public class Solution {
         public class Apartments {
         }
         
-        public class Apt3Bedroom extends Apartments{
-            
-        }
+
         
-        public class BigHall extends Hall{
-            public BigHall(){
-                super(new BigDecimal(5));
-            }
+    }
+
+    public class Apt3Bedroom extends Building.Apartments{
+        Apt3Bedroom(Building building) {
+            building.super();
         }
-        
+    }
+
+    public class BigHall extends Building.Hall{
+        public BigHall(Building building, BigDecimal square) {
+            building.super(square);
+        }
     }
 
     public static void main(String[] args) {

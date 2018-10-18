@@ -16,74 +16,91 @@ public class Util {
 
     public static List<Jeans> getAllJeans() {
 
+        abstract class AbstractJeans implements Jeans {
+            int id, length, size;
+            double prize;
+            @Override
+            public String toString() {
+                return "AbstractJeans{id="+getId() +", length="+getLength()+", size="+getSize()+", prize="+getPrice()+"}";
+            }
+
+            public AbstractJeans() {
+            }
+
+            public AbstractJeans(int id, int length, int size, double price)
+            {
+                this.id = id;
+                this.length = length;
+                this.size = size;
+                this.prize = price;
+            }
+            @Override
+            public double getPrice() {
+                return this.prize;
+//                (double)jeansArray.toArray()[4];
+            }
+
+            @Override
+            public int getSize() {
+                return this.size;
+//                        (int)jeansArray.toArray()[2];
+            }
+
+            @Override
+            public int getId() {
+                return this.id;
+//                        (int)jeansArray.toArray()[0];
+            }
+
+            @Override
+            public abstract String getTM();
+
+            @Override
+            public int getLength() {
+                return this.length;
+//                        (int)jeansArray.toArray()[1];
+            }
+        }
+
+        class Levis extends AbstractJeans {
+            public Levis(int id, int length, int size, double price) {
+                super(id, length, size, price);
+            }
+
+            @Override
+            public String toString() {
+                return "Levis{id="+getId() +", length="+getLength()+", size="+getSize()+", prize="+getPrice()+"}";
+//                return "Levis{}";
+            }
+
+            @Override
+            public String getTM() {
+                return "Levi's";
+            }
+        }
+
+        class Denim extends AbstractJeans {
+            public Denim(int id, int length, int size, double price) {
+                super(id, length, size, price);
+            }
+
+            @Override
+            public String toString() {
+                return "Denim{id="+getId() +", length="+getLength()+", size="+getSize()+", prize="+getPrice()+"}";
+//              return "Denim{}";
+            }
+
+            @Override
+            public String getTM() {
+                return "Denim";
+            }
+        }
+
         //add your code here
 
         List<Jeans> allJeans = new LinkedList<>();
 
         for (Object[] obj : getJeansArray()) {
-            abstract class AbstractJeans implements Jeans{
-            private int id, length, size;
-            private double price;
-            private String company;
-
-            public AbstractJeans(int id, int length, int size, double price){
-                    this.id = id;
-                    this.length = length;
-                    this.size = size;
-                    this.price = price;
-                }
-            
-            public int getId(){
-                return this.id = id;
-            }
-            public double getPrice(){
-                return this.price;
-            }
-            public String getTM(){
-                return this.company;
-            }
-            public int getLength(){
-                return this.length = length;
-            }
-                    
-            public int getSize(){
-                return this.size;
-            }
-            @Override
-            public String toString(){
-                return getTM()+"{" + 
-                          "id=" + this.id + 
-                          ", length=" + this.length + 
-                          ", size=" + this.size + 
-                          ", price=" + this.price + 
-                          '}'; 
-
-            }
-            
-            }
-
-            
-            class Levis extends AbstractJeans{
-                public Levis(int id, int length, int size, double price){
-                    super(id, length, size, price);
-                }
-                public String getTM() {
-                    return Company.Levis.fullName;
-                }
-
-                
-            }
-            
-            class Denim extends AbstractJeans{
-                public Denim(int id, int length, int size, double price){
-                    super(id, length, size, price);
-                }
-                public String getTM() {
-                    return Company.Denim.fullName;
-                }
-                
-            }
-            
             int id = (int) obj[0];
             final Company company = (Company ) obj[1];
             int length = (int) obj[2];
@@ -94,15 +111,15 @@ public class Util {
             if (Company.Levis == company) {
                 jeans = new Levis(id, length, size, price);
             } else
-                if (Company.Denim == company) {
-                    jeans = new Denim(id, length, size, price);
-                } else {
-                    jeans = new AbstractJeans(id, length, size, price) {
-                        public String getTM() {
-                            return company.fullName;
-                        }
-                    };
-                }
+            if (Company.Denim == company) {
+                jeans = new Denim(id, length, size, price);
+            } else {
+                jeans = new AbstractJeans(id, length, size, price) {
+                    public String getTM() {
+                        return company.fullName;
+                    }
+                };
+            }
             allJeans.add(jeans);
         }
         return allJeans;

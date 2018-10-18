@@ -20,7 +20,7 @@ public class Solution {
             }
             
             public Iterator next() {
-                return this;
+                return getIterator(name);
             }
         };
     }
