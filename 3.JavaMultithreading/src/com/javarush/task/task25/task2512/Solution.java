@@ -7,8 +7,17 @@ public class Solution implements Thread.UncaughtExceptionHandler {
 
     @Override
     public void uncaughtException(Thread t, Throwable e) {
+        if(!t.isInterrupted()){
+            t.interrupt();
+        }
+        
+        if(e.getCause() != null) uncaughtException(t, e.getCause());
+        
+        System.out.println(e.getClass().getName() + ": " + e.getMessage());
+        
     }
 
     public static void main(String[] args) {
+       
     }
 }

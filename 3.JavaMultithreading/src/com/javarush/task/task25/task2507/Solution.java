@@ -3,6 +3,8 @@ package com.javarush.task.task25.task2507;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /* 
 Работать в поте лица!
@@ -18,7 +20,16 @@ public class Solution extends Thread {
     }
 
     public void interrupt() {
-        //implement logic here
+        try {
+            //implement logic here
+            socket.close();
+            in.close();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Solution.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            super.interrupt();
+        }
     }
 
     public void run() {
