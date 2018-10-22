@@ -4,7 +4,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class Producer implements Runnable{
     
-    private ConcurrentHashMap map;
+    private ConcurrentHashMap<String, String> map;
     
     public Producer(ConcurrentHashMap map){
         this.map = map;
@@ -15,7 +15,7 @@ public class Producer implements Runnable{
             int i = 0;
             while(true){
                 i++;
-                map.put(i, "Some text for " + i);
+                map.put(""+i, "Some text for " + i);
                 Thread.sleep(500);
             }
             

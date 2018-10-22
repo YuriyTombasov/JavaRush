@@ -9,11 +9,11 @@ public class Solution {
         
         private int value;
         
-        public synchronized void setValue(int value){
+        public synchronized void set(int value){
             this.value = value;
         }
         
-        public synchronized int getValue(){
+        public synchronized int get(){
             return this.value;
         }
         

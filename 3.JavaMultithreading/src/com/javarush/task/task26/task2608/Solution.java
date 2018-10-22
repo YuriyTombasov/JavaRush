@@ -17,19 +17,19 @@ public class Solution {
     }
 
     public int getSumOfVar1AndVar2() {
-        Integer sum = 0;
-        synchronized (sum) {
-            sum = var1 + var2;
+        Integer sum12 = 0;
+        synchronized (sum12) {
+            sum12 = var1 + var2;
         }
-        return sum;
+        return sum12;
     }
 
     public int getSumOfVar3AndVar4() {
-        Integer sum = 0;
-        synchronized (sum) {
-            sum = var3 + var4;
+        Integer sum34 = 0;
+        synchronized (sum34) {
+            sum34 = var3 + var4;
         }
-        return sum;
+        return sum34;
     }
 
     public static void main(String[] args) {
