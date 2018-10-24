@@ -14,7 +14,32 @@ public class Solution {
 
     public static boolean isNormalLockOrder(final Solution solution, final Object o1, final Object o2) throws Exception {
         //do something here
-        return false;
+        Thread thread1 = new Thread() { 
+            @Override 
+            public void run() { 
+                synchronized (o1) { 
+                    try { 
+                        sleep(500); 
+                    } catch (InterruptedException e) { 
+                        e.printStackTrace(); 
+                    } 
+                    synchronized (o2) { 
+                    } 
+                } 
+            } 
+        }; 
+        Thread thread2 = new Thread() { 
+            @Override 
+            public void run() { 
+                solution.someMethodWithSynchronizedBlocks(o1, o2); 
+            } 
+        }; 
+        thread1.start(); 
+        thread2.start(); 
+        Thread.sleep(500); 
+        System.out.println(thread2.getState()); 
+        return (!Thread.State.BLOCKED.equals(thread2.getState())); 
+
     }
 
     public static void main(String[] args) throws Exception {
