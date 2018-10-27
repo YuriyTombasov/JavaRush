@@ -14,36 +14,49 @@ public class Solution {
 
     public static boolean isNormalLockOrder(final Solution solution, final Object o1, final Object o2) throws Exception {
         //do something here
-        Thread thread1 = new Thread() { 
-            @Override 
-            public void run() { 
-                synchronized (o1) { 
-                    try { 
-                        sleep(500); 
-                    } catch (InterruptedException e) { 
-                        e.printStackTrace(); 
-                    } 
-                    synchronized (o2) { 
-                    } 
-                } 
-            } 
-        }; 
-        Thread thread2 = new Thread() { 
-            @Override 
-            public void run() { 
-                solution.someMethodWithSynchronizedBlocks(o1, o2); 
-            } 
-        }; 
-        thread1.start(); 
-        thread2.start(); 
-        Thread.sleep(500); 
-        System.out.println(thread2.getState()); 
-        return (!Thread.State.BLOCKED.equals(thread2.getState())); 
 
+        Thread thread1 = new Thread(){
+            @Override
+            public void run() {
+                synchronized (o1) {
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e){
+                    } finally {
+                        synchronized (o2){
+
+                        }
+                    }
+                }
+            }
+        };
+
+        Thread thread2 = new Thread(){
+            @Override
+            public void run() {
+                solution.someMethodWithSynchronizedBlocks(o1, o2);
+            }
+        };
+
+        thread1.start();
+        thread2.start();
+
+        Thread.sleep(1000);
+
+        return !(thread1.getState().equals(Thread.State.BLOCKED) && thread2.getState().equals(Thread.State.BLOCKED));
     }
 
     public static void main(String[] args) throws Exception {
-        final Solution solution = new Solution();
+        final Solution solution = new Solution(){
+            @Override
+            public void someMethodWithSynchronizedBlocks(Object obj1, Object obj2) {
+                synchronized (obj2){
+                    synchronized (obj1){
+                        System.out.println(obj1 + " " + obj2);
+                    }
+                }
+            }
+        };
         final Object o1 = new Object();
         final Object o2 = new Object();
 
