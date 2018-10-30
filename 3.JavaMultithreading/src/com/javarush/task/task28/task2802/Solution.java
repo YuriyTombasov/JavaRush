@@ -8,6 +8,37 @@ import java.util.concurrent.atomic.AtomicInteger;
 Пишем свою ThreadFactory
 */
 public class Solution {
+    
+    public static class AmigoThreadFactory implements ThreadFactory{
+
+        static AtomicInteger countFub = new AtomicInteger(0);
+        AtomicInteger numThr = new AtomicInteger(0);
+        AtomicInteger numFub = new AtomicInteger(0);
+        
+        public AmigoThreadFactory(){
+            numFub.set(countFub.incrementAndGet());
+        }
+        
+        @Override
+        public Thread newThread(Runnable r) {
+            
+            Thread result = new Thread(r);
+            numThr.incrementAndGet();
+            
+            result.setDaemon(false);
+            result.setPriority(Thread.NORM_PRIORITY);
+            result.setName(String.format("%s-pool-%s-thread-%s", result.getThreadGroup().getName(), numFub.toString(), numThr.toString()));
+            
+            
+            return result;
+        }
+    
+    
+    
+    
+    }
+    
+    
 
     public static void main(String[] args) {
         class EmulateThreadFactoryTask implements Runnable {
