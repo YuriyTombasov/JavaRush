@@ -1,5 +1,6 @@
 package com.javarush.task.task28.task2807;
 
+
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -10,7 +11,23 @@ import java.util.concurrent.TimeUnit;
 public class Solution {
     public static void main(String[] args) throws InterruptedException {
         //Add your code here
-
+        
+        LinkedBlockingQueue<Runnable> q = new LinkedBlockingQueue<>();
+        for(int i = 1; i <= 10; i++){
+            final int localID = i;
+            q.add(new Runnable(){
+               @Override
+               public void run(){
+                   doExpensiveOperation(localID);
+               }
+            });
+        }
+        
+        ThreadPoolExecutor pool = new ThreadPoolExecutor(3, 5, 1000, TimeUnit.MILLISECONDS, q);
+        pool.prestartAllCoreThreads();
+        pool.shutdown();
+        pool.awaitTermination(5000, TimeUnit.SECONDS);
+        
         /* output example
 pool-1-thread-2, localId=2
 pool-1-thread-3, localId=3

@@ -20,7 +20,13 @@ public class Solution {
             });
         }
 
-        executor.shutdownNow();
+        List<Runnable> taskList = executor.shutdownNow();
+        for(Runnable task : taskList){
+            System.out.println(task);
+        }
+        
+        
+        
     }
 
     private static void doExpensiveOperation(int localId) {

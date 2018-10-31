@@ -2,20 +2,20 @@ package com.javarush.task.task28.task2803;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-/* 
+/* 0
 ThreadLocalRandom
 */
 public class Solution {
     public static int getRandomIntegerBetweenNumbers(int from, int to) {
-        return 0;
+        return ThreadLocalRandom.current().nextInt(from, to);
     }
 
     public static double getRandomDouble() {
-        return 0;
+        return ThreadLocalRandom.current().nextDouble();
     }
 
     public static long getRandomLongBetween0AndN(long n) {
-        return 0;
+        return ThreadLocalRandom.current().nextLong(0, n);
     }
 
     public static void main(String[] args) {

@@ -12,22 +12,26 @@ public class ReadWriteMap<K, V> {
     private final Lock writeLock;
 
     public ReadWriteMap(Map<K, V> map) {
+        readLock = lock.readLock();
+        writeLock = lock.writeLock();
         this.map = map;
     }
 
     public V put(K key, V value) {
         try {
+            writeLock.lock();
             return map.put(key, value);
         } finally {
-
+            writeLock.unlock();
         }
     }
 
     public V get(K key) {
         try {
+            readLock.lock();
             return map.get(key);
         } finally {
-
+            readLock.unlock();
         }
     }
 }

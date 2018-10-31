@@ -11,6 +11,22 @@ public class Solution {
     public static void main(String[] args) throws InterruptedException {
         //Add your code here
 
+        ExecutorService pool = Executors.newFixedThreadPool(5);
+        
+        for(int i=1; i<=10; i++){
+            final int localID = i;
+            pool.submit(new Runnable(){
+                @Override
+                public void run(){
+                    Solution.doExpensiveOperation(localID);
+                }
+            });
+        }
+        
+        pool.shutdown();
+        pool.awaitTermination(5000, TimeUnit.SECONDS);
+        
+        
         /* output example
 pool-1-thread-2, localId=2
 pool-1-thread-1, localId=1
