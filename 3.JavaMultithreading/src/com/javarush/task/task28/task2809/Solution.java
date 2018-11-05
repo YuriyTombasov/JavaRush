@@ -24,24 +24,23 @@ public class Solution {
         final Phaser phaser = new Phaser(1 + characters.size());
 
         for (final Character character : characters) {
-            
             final String member = character.toString();
             System.out.println(member + " присоединился к игре");
             new Thread() {
                 @Override
                 public void run() {
-                    phaser.arriveAndAwaitAdvance();
                     System.out.println(member + " готовится играть");
+                    phaser.arriveAndAwaitAdvance();
                     if (!isEveryoneReady) {
                         isEveryoneReady = true;
+
                         System.out.println("Игра началась!");
                     }
                     character.run();
                 }
             }.start();
+
         }
-        
         phaser.arriveAndDeregister();
-        
     }
 }

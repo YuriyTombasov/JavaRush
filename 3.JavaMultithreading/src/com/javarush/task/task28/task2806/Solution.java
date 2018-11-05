@@ -24,7 +24,7 @@ public class Solution {
         }
         
         pool.shutdown();
-        pool.awaitTermination(5000, TimeUnit.SECONDS);
+        pool.awaitTermination(5, TimeUnit.SECONDS);
         
         
         /* output example

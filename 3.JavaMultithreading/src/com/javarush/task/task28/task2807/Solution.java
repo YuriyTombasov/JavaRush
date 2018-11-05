@@ -26,7 +26,7 @@ public class Solution {
         ThreadPoolExecutor pool = new ThreadPoolExecutor(3, 5, 1000, TimeUnit.MILLISECONDS, q);
         pool.prestartAllCoreThreads();
         pool.shutdown();
-        pool.awaitTermination(5000, TimeUnit.SECONDS);
+        pool.awaitTermination(5, TimeUnit.SECONDS);
         
         /* output example
 pool-1-thread-2, localId=2
