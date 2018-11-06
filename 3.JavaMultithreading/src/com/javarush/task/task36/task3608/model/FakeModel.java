@@ -18,7 +18,7 @@ public class FakeModel implements Model{
 
     @Override
     public ModelData getModelData() {
-        return null;
+        return modelData;
     }
 
     @Override
