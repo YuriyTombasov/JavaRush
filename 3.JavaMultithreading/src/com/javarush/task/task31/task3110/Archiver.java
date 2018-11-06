@@ -12,6 +12,13 @@ import java.nio.file.*;
  *
  * @author tombasov_ya
  */
+
+/*
+C:\Users\tombasov_ya\Tom\GIT\TasksJavaRush\test\SourceToZip.txt
+C:\Users\tombasov_ya\Tom\GIT\TasksJavaRush\test\TargetToZip.zip
+
+*/
+
 public class Archiver {
     
     public static void main(String[] args) throws Exception{
